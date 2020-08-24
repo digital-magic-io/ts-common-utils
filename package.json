@@ -1,0 +1,41 @@
+{
+  "name": "ts-common-utils",
+  "version": "1.0.0",
+  "description": "Common utilities for Type Script projects",
+  "main": "index.js",
+  "sideEffects": false,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "precommit": "pretty-quick --staged",
+    "prepare": "tsc",
+    "build": "tsc",
+    "start": "ts-node src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/digital-magic-io/ts-common-utils.git"
+  },
+  "author": "Jevgeni Goloborodko <jevgeni@digital-magic.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/digital-magic-io/ts-common-utils/issues"
+  },
+  "homepage": "https://github.com/digital-magic-io/ts-common-utils#readme",
+  "keywords": [
+    "typescript"
+  ],
+  "tags": [
+    "typescript"
+  ],
+  "devDependencies": {
+    "@types/node": "^11.15.20",
+    "husky": "^4.2.5",
+    "prettier": "^2.1.0",
+    "pretty-quick": "^3.0.0",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.2"
+  },
+  "dependencies": {
+    "moment": "^2.27.0"
+  }
+}
