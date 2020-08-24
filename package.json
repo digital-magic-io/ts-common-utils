@@ -1,5 +1,5 @@
 {
-  "name": "ts-common-utils",
+  "name": "@digital-magic/ts-common-utils",
   "version": "1.0.0",
   "description": "Common utilities for Type Script projects",
   "main": "index.js",
