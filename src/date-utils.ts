@@ -1,10 +1,8 @@
-import {isEmpty} from "./type-utils"
-import moment from "moment"
+import { isEmpty } from './type-utils'
+import moment from 'moment'
 
 export function isSameDay(d1: Date, d2: Date): boolean {
-  return d1.getFullYear() === d2.getFullYear()
-    && d1.getMonth() === d2.getMonth()
-    && d1.getDay() === d2.getDay()
+  return d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth() && d1.getDay() === d2.getDay()
 }
 
 export function isSameOrAfterDay(date: Date, baseline: Date = new Date()): boolean {
@@ -21,4 +19,3 @@ export const formatDateValue = (format: string) => (value: Date | undefined): st
   }
   return moment(value).format(format)
 }
-

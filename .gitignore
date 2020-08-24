@@ -27,6 +27,7 @@ typings/
 
 # Build
 build/
+coverage/
 
 # IDEA project files
 .idea/
