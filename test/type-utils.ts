@@ -57,60 +57,75 @@ describe('type-utils', () => {
     )
   })
   it('allFieldsAreFilled', () => {
-    assert.strictEqual(TU.allFieldsAreFilled({}, false), false)
-    assert.strictEqual(TU.allFieldsAreFilled({}, true), false)
-    assert.strictEqual(TU.allFieldsAreFilled({ test: undefined }, false), false)
-    assert.strictEqual(TU.allFieldsAreFilled({ test: null }, false), false)
-    assert.strictEqual(TU.allFieldsAreFilled({ test: '' }, false), true)
-    assert.strictEqual(TU.allFieldsAreFilled({ test: '' }, true), false)
-    assert.strictEqual(TU.allFieldsAreFilled({ test: undefined, test2: 'value' }, false), false)
-    assert.strictEqual(TU.allFieldsAreFilled({ test: null, test2: 'value' }, false), false)
-    assert.strictEqual(TU.allFieldsAreFilled({ test: 'value1', test2: 'value2' }, false), true)
-    assert.strictEqual(TU.allFieldsAreFilled({ test: 'value1', test2: '' }, false), true)
-    assert.strictEqual(TU.allFieldsAreFilled({ test: 'value1', test2: '' }, true), false)
+    const allFieldsAreFilledEmptyStrTrue = TU.allFieldsAreFilled(true)
+    const allFieldsAreFilledEmptyStrFalse = TU.allFieldsAreFilled(false)
+    assert.strictEqual(allFieldsAreFilledEmptyStrFalse({}), false)
+    assert.strictEqual(allFieldsAreFilledEmptyStrTrue({}), false)
+    assert.strictEqual(allFieldsAreFilledEmptyStrFalse({ test: undefined }), false)
+    assert.strictEqual(allFieldsAreFilledEmptyStrFalse({ test: null }), false)
+    assert.strictEqual(allFieldsAreFilledEmptyStrFalse({ test: '' }), true)
+    assert.strictEqual(allFieldsAreFilledEmptyStrTrue({ test: '' }), false)
+    assert.strictEqual(allFieldsAreFilledEmptyStrFalse({ test: undefined, test2: 'value' }), false)
+    assert.strictEqual(allFieldsAreFilledEmptyStrFalse({ test: null, test2: 'value' }), false)
+    assert.strictEqual(allFieldsAreFilledEmptyStrFalse({ test: 'value1', test2: 'value2' }), true)
+    assert.strictEqual(allFieldsAreFilledEmptyStrFalse({ test: 'value1', test2: '' }), true)
+    assert.strictEqual(allFieldsAreFilledEmptyStrTrue({ test: 'value1', test2: '' }), false)
   })
   it('anyFieldIsFilled', () => {
-    assert.strictEqual(TU.anyFieldIsFilled({}, false), false)
-    assert.strictEqual(TU.anyFieldIsFilled({}, true), false)
-    assert.strictEqual(TU.anyFieldIsFilled({ test: undefined }, false), false)
-    assert.strictEqual(TU.anyFieldIsFilled({ test: null }, false), false)
-    assert.strictEqual(TU.anyFieldIsFilled({ test: '' }, false), true)
-    assert.strictEqual(TU.anyFieldIsFilled({ test: '' }, true), false)
-    assert.strictEqual(TU.anyFieldIsFilled({ test: undefined, test2: 'value' }, false), true)
-    assert.strictEqual(TU.anyFieldIsFilled({ test: null, test2: 'value' }, false), true)
-    assert.strictEqual(TU.anyFieldIsFilled({ test: 'value1', test2: 'value2' }, false), true)
-    assert.strictEqual(TU.anyFieldIsFilled({ test: 'value1', test2: '' }, false), true)
-    assert.strictEqual(TU.anyFieldIsFilled({ test: 'value1', test2: '' }, true), true)
+    const anyFieldIsFilledEmptyStrFalse = TU.anyFieldIsFilled(false)
+    const anyFieldIsFilledEmptyStrTrue = TU.anyFieldIsFilled(true)
+    assert.strictEqual(anyFieldIsFilledEmptyStrFalse({}), false)
+    assert.strictEqual(anyFieldIsFilledEmptyStrTrue({}), false)
+    assert.strictEqual(anyFieldIsFilledEmptyStrFalse({ test: undefined }), false)
+    assert.strictEqual(anyFieldIsFilledEmptyStrFalse({ test: null }), false)
+    assert.strictEqual(anyFieldIsFilledEmptyStrFalse({ test: '' }), true)
+    assert.strictEqual(anyFieldIsFilledEmptyStrTrue({ test: '' }), false)
+    assert.strictEqual(anyFieldIsFilledEmptyStrFalse({ test: undefined, test2: 'value' }), true)
+    assert.strictEqual(anyFieldIsFilledEmptyStrFalse({ test: null, test2: 'value' }), true)
+    assert.strictEqual(anyFieldIsFilledEmptyStrFalse({ test: 'value1', test2: 'value2' }), true)
+    assert.strictEqual(anyFieldIsFilledEmptyStrFalse({ test: 'value1', test2: '' }), true)
+    assert.strictEqual(anyFieldIsFilledEmptyStrTrue({ test: 'value1', test2: '' }), true)
   })
   it('anyFieldIsFilledWithException', () => {
     const alwaysFalse = <T>(_: T) => false
     const eqValue = (value: string) => (v: string) => v === value
-    assert.strictEqual(TU.anyFieldIsFilledWithException({}, false, alwaysFalse), false)
-    assert.strictEqual(TU.anyFieldIsFilledWithException({}, true, alwaysFalse), false)
-    assert.strictEqual(TU.anyFieldIsFilledWithException({ test: undefined }, false, alwaysFalse), false)
-    assert.strictEqual(TU.anyFieldIsFilledWithException({ test: undefined }, false, eqValue('test')), false)
-    assert.strictEqual(TU.anyFieldIsFilledWithException({ test: null }, false, alwaysFalse), false)
-    assert.strictEqual(TU.anyFieldIsFilledWithException({ test: null }, false, eqValue('test')), false)
-    assert.strictEqual(TU.anyFieldIsFilledWithException({ test: '' }, false, alwaysFalse), true)
-    assert.strictEqual(TU.anyFieldIsFilledWithException({ test: '' }, true, alwaysFalse), false)
-    assert.strictEqual(TU.anyFieldIsFilledWithException({ test: '' }, false, eqValue('test')), false)
-    assert.strictEqual(TU.anyFieldIsFilledWithException({ test: '' }, true, eqValue('test')), false)
-    assert.strictEqual(TU.anyFieldIsFilledWithException({ test: undefined, test2: 'value' }, false, alwaysFalse), true)
+    const anyFieldIsFilledWithExceptionEmptyStrFalse = TU.anyFieldIsFilledWithException(false)
+    const anyFieldIsFilledWithExceptionEmptyStrTrue = TU.anyFieldIsFilledWithException(true)
+    assert.strictEqual(anyFieldIsFilledWithExceptionEmptyStrFalse({}, alwaysFalse), false)
+    assert.strictEqual(anyFieldIsFilledWithExceptionEmptyStrTrue({}, alwaysFalse), false)
+    assert.strictEqual(anyFieldIsFilledWithExceptionEmptyStrFalse({ test: undefined }, alwaysFalse), false)
+    assert.strictEqual(anyFieldIsFilledWithExceptionEmptyStrFalse({ test: undefined }, eqValue('test')), false)
+    assert.strictEqual(anyFieldIsFilledWithExceptionEmptyStrFalse({ test: null }, alwaysFalse), false)
+    assert.strictEqual(anyFieldIsFilledWithExceptionEmptyStrFalse({ test: null }, eqValue('test')), false)
+    assert.strictEqual(anyFieldIsFilledWithExceptionEmptyStrFalse({ test: '' }, alwaysFalse), true)
+    assert.strictEqual(anyFieldIsFilledWithExceptionEmptyStrTrue({ test: '' }, alwaysFalse), false)
+    assert.strictEqual(anyFieldIsFilledWithExceptionEmptyStrFalse({ test: '' }, eqValue('test')), false)
+    assert.strictEqual(anyFieldIsFilledWithExceptionEmptyStrTrue({ test: '' }, eqValue('test')), false)
     assert.strictEqual(
-      TU.anyFieldIsFilledWithException({ test: undefined, test2: 'value' }, false, eqValue('test2')),
-      false
-    )
-    assert.strictEqual(TU.anyFieldIsFilledWithException({ test: null, test2: 'value' }, false, alwaysFalse), true)
-    assert.strictEqual(TU.anyFieldIsFilledWithException({ test: null, test2: 'value' }, false, eqValue('test2')), false)
-    assert.strictEqual(TU.anyFieldIsFilledWithException({ test: 'value1', test2: 'value2' }, false, alwaysFalse), true)
-    assert.strictEqual(
-      TU.anyFieldIsFilledWithException({ test: 'value1', test2: 'value2' }, false, eqValue('test2')),
+      anyFieldIsFilledWithExceptionEmptyStrFalse({ test: undefined, test2: 'value' }, alwaysFalse),
       true
     )
-    assert.strictEqual(TU.anyFieldIsFilledWithException({ test: 'value1', test2: '' }, false, alwaysFalse), true)
-    assert.strictEqual(TU.anyFieldIsFilledWithException({ test: 'value1', test2: '' }, true, alwaysFalse), true)
-    assert.strictEqual(TU.anyFieldIsFilledWithException({ test: 'value1', test2: '' }, false, eqValue('test')), true)
-    assert.strictEqual(TU.anyFieldIsFilledWithException({ test: 'value1', test2: '' }, true, eqValue('test')), false)
+    assert.strictEqual(
+      anyFieldIsFilledWithExceptionEmptyStrFalse({ test: undefined, test2: 'value' }, eqValue('test2')),
+      false
+    )
+    assert.strictEqual(anyFieldIsFilledWithExceptionEmptyStrFalse({ test: null, test2: 'value' }, alwaysFalse), true)
+    assert.strictEqual(
+      anyFieldIsFilledWithExceptionEmptyStrFalse({ test: null, test2: 'value' }, eqValue('test2')),
+      false
+    )
+    assert.strictEqual(
+      anyFieldIsFilledWithExceptionEmptyStrFalse({ test: 'value1', test2: 'value2' }, alwaysFalse),
+      true
+    )
+    assert.strictEqual(
+      anyFieldIsFilledWithExceptionEmptyStrFalse({ test: 'value1', test2: 'value2' }, eqValue('test2')),
+      true
+    )
+    assert.strictEqual(anyFieldIsFilledWithExceptionEmptyStrFalse({ test: 'value1', test2: '' }, alwaysFalse), true)
+    assert.strictEqual(anyFieldIsFilledWithExceptionEmptyStrTrue({ test: 'value1', test2: '' }, alwaysFalse), true)
+    assert.strictEqual(anyFieldIsFilledWithExceptionEmptyStrFalse({ test: 'value1', test2: '' }, eqValue('test')), true)
+    assert.strictEqual(anyFieldIsFilledWithExceptionEmptyStrTrue({ test: 'value1', test2: '' }, eqValue('test')), false)
   })
   it('nameOf', () => {
     const obj = {

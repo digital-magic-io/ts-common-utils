@@ -41,25 +41,24 @@ export function getOrElse<T>(value: T | null | undefined, defaultValue: () => T)
   return hasValue(value) ? value : defaultValue()
 }
 
-export function allFieldsAreFilled(object: object, emptyStrAsEmpty: boolean): boolean {
+export const allFieldsAreFilled = (emptyStrAsNone: boolean) => (object: object): boolean => {
   if (Object.keys(object).length === 0) {
     return false
   }
-  return Object.values(object).every(emptyStrAsEmpty ? isNotEmptyString : hasValue)
+  return Object.values(object).every(emptyStrAsNone ? isNotEmptyString : hasValue)
 }
 
-export function anyFieldIsFilled(object: object, emptyStrAsEmpty: boolean): boolean {
-  return Object.values(object).some(emptyStrAsEmpty ? isNotEmptyString : hasValue)
+export const anyFieldIsFilled = (emptyStrAsNone: boolean) => (object: object): boolean => {
+  return Object.values(object).some(emptyStrAsNone ? isNotEmptyString : hasValue)
 }
 
-export function anyFieldIsFilledWithException<T>(
+export const anyFieldIsFilledWithException = (emptyStrAsNone: boolean) => <T>(
   object: T,
-  emptyStrAsEmpty: boolean,
   exceptionPredicate: (value: keyof T) => boolean
-): boolean {
+): boolean => {
   return Object.entries(object).some(
     ([fieldName, item]) =>
-      !exceptionPredicate(fieldName as keyof T) && (emptyStrAsEmpty ? isNotEmptyString(item) : hasValue(item))
+      !exceptionPredicate(fieldName as keyof T) && (emptyStrAsNone ? isNotEmptyString(item) : hasValue(item))
   )
 }
 
