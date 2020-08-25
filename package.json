@@ -1,12 +1,12 @@
 {
   "name": "@digital-magic/ts-common-utils",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "Common utilities for Type Script projects",
-  "main": "index.js",
-  "typings": "index.d.ts",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "sideEffects": false,
   "scripts": {
-    "clean": "rimraf ./build",
+    "clean": "rimraf ./lib",
     "lint": "tslint -p .",
     "jest-clear-cache": "jest --clearCache",
     "prettier": "pretty-quick --check --pattern \"src/**/*.*(ts|tsx)\" --pattern \"test/**/*.*(ts|tsx)\"",
@@ -14,7 +14,7 @@
     "jest": "jest",
     "test": "npm run jest-clear-cache && npm run prettier && npm run jest",
     "prebuild": "npm run clean && npm run prettier",
-    "postbuild": "pretty-quick --pattern \"build/**/*.*(js|ts|jsx|tsx)\"",
+    "postbuild": "pretty-quick --pattern \"lib/**/*.*(js|ts|jsx|tsx)\"",
     "precommit": "pretty-quick --staged",
     "prepare": "tsc -p .",
     "build": "tsc -p ./tsconfig.build.json"
@@ -23,6 +23,11 @@
     "type": "git",
     "url": "git+https://github.com/digital-magic-io/ts-common-utils.git"
   },
+  "files": [
+    "lib/",
+    "LICENSE",
+    "README.md"
+  ],
   "author": "Jevgeni Goloborodko <jevgeni@digital-magic.io>",
   "license": "MIT",
   "bugs": {
