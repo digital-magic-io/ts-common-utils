@@ -6,8 +6,8 @@ describe('random', () => {
     assert.strictEqual(R.generateStringFromValues(-1, 'ab'), undefined)
     assert.strictEqual(R.generateStringFromValues(0, 'ab'), undefined)
     assert.strictEqual(R.generateStringFromValues(2, ''), undefined)
-    assert.strictEqual(R.generateStringFromValues(2, 'ab')?.length, 2)
-    assert.strictEqual(R.generateStringFromValues(4, 'ab12')?.length, 4)
+    assert.strictEqual(String(R.generateStringFromValues(2, 'ab')).length, 2)
+    assert.strictEqual(String(R.generateStringFromValues(5, 'ab123')).length, 5)
   })
   it('generateString', () => {
     assert.strictEqual(R.generateString(2).length, 2)

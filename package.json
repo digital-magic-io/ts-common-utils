@@ -17,7 +17,7 @@
     "postbuild": "pretty-quick --pattern \"build/**/*.*(js|ts|jsx|tsx)\"",
     "precommit": "pretty-quick --staged",
     "prepare": "tsc -p .",
-    "build": "tsc -p ."
+    "build": "tsc -p ./tsconfig.build.json"
   },
   "repository": {
     "type": "git",
@@ -36,6 +36,7 @@
     "typescript"
   ],
   "devDependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.11.0",
     "@types/jest": "^26.0.10",
     "@types/node": "^11.15.20",
     "@types/prettier": "^2.0.2",
