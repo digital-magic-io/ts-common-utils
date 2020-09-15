@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import * as D from '../src/date-utils'
+import * as D from '../src/date'
 import moment from 'moment'
 
 describe('date-utils', () => {

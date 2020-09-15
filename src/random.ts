@@ -1,5 +1,6 @@
-import { isEmptyString } from './type-utils'
+import { isEmptyString } from './type'
 
+// TODO: Refactor it in more functional approach
 export function generateStringFromValues(length: number, possibleValues: string): string | undefined {
   if (length <= 0) {
     return undefined
@@ -19,9 +20,8 @@ export function generateStringFromValues(length: number, possibleValues: string)
   return text
 }
 
-export function generateString(length: number): string {
-  return generateStringFromValues(length, 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789')!
-}
+export const generateString = (length: number): string =>
+  generateStringFromValues(length, 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789')!
 
 export function generateElementId(): string {
   const numbersLength = 17

@@ -1,14 +1,14 @@
 import * as assert from 'assert'
-import * as TU from '../src/type-utils'
+import * as TU from '../src/type'
 
-describe('type-utils', () => {
-  it('asNullable', () => {
-    assert.strictEqual(TU.asNullable(undefined), null)
-    assert.strictEqual(TU.asNullable('test'), 'test')
+describe('type', () => {
+  it('toNullUnionType', () => {
+    assert.strictEqual(TU.toNullUnionType(undefined), null)
+    assert.strictEqual(TU.toNullUnionType('test'), 'test')
   })
-  it('fromNullable', () => {
-    assert.strictEqual(TU.fromNullable(null), undefined)
-    assert.strictEqual(TU.fromNullable('test'), 'test')
+  it('toOptionalType', () => {
+    assert.strictEqual(TU.toOptionalType(null), undefined)
+    assert.strictEqual(TU.toOptionalType('test'), 'test')
   })
   it('isEmptyString', () => {
     assert.strictEqual(TU.isEmptyString(''), true)
@@ -23,6 +23,13 @@ describe('type-utils', () => {
     assert.strictEqual(TU.isBlankString(undefined), true)
     assert.strictEqual(TU.isBlankString(null), true)
     assert.strictEqual(TU.isBlankString('test'), false)
+  })
+  it('isNonArrayObject', () => {
+    assert.strictEqual(TU.isNonArrayObject(''), false)
+    assert.strictEqual(TU.isNonArrayObject(1), false)
+    assert.strictEqual(TU.isNonArrayObject([]), false)
+    assert.strictEqual(TU.isNonArrayObject([1]), false)
+    assert.strictEqual(TU.isNonArrayObject({}), true)
   })
   it('isNotEmptyString', () => {
     assert.strictEqual(TU.isNotEmptyString(''), false)
