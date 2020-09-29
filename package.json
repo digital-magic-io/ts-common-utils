@@ -57,7 +57,7 @@
     "tslint-immutable": "^6.0.1",
     "typescript": "^4.0.2"
   },
-  "dependencies": {
-    "moment": "^2.27.0"
+  "deerdependencies": {
+    "moment": ">= 2.26.0"
   }
 }
