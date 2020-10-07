@@ -49,20 +49,6 @@ describe('type', () => {
     assert.strictEqual(TU.hasValue(null), false)
     assert.strictEqual(TU.hasValue(' '), true)
   })
-  it('getOrElse', () => {
-    assert.strictEqual(
-      TU.getOrElse(null, () => 'test'),
-      'test'
-    )
-    assert.strictEqual(
-      TU.getOrElse(undefined, () => 999),
-      999
-    )
-    assert.strictEqual(
-      TU.getOrElse('value', () => 'test'),
-      'value'
-    )
-  })
   it('allFieldsAreFilled', () => {
     const allFieldsAreFilledEmptyStrTrue = TU.allFieldsAreFilled(true)
     const allFieldsAreFilledEmptyStrFalse = TU.allFieldsAreFilled(false)

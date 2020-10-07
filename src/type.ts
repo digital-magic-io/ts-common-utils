@@ -34,9 +34,6 @@ export const isEmpty = <T>(value: NullableType<T>): value is null | undefined =>
 
 export const hasValue = <T>(value: NullableType<T>): value is T => !isEmpty(value)
 
-export const getOrElse = <T>(value: NullableType<T>, defaultValue: () => T): T =>
-  hasValue(value) ? value : defaultValue()
-
 const nonEmptyPredicate: (emptyStrAsNone: boolean) => Predicate<any> = (emptyStrAsNone) =>
   emptyStrAsNone ? isNotEmptyString : hasValue
 
