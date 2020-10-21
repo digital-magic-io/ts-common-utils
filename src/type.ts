@@ -20,19 +20,19 @@ export const toNullUnionType = <T>(value: NullableType<T>): NullUnionType<T> => 
 
 export const toOptionalType = <T>(value: NullableType<T>): OptionalType<T> => (value === null ? undefined : value)
 
-export const isEmptyString = <T>(value: NullableType<T>): value is null | undefined =>
-  value === null || value === undefined || (typeof value === 'string' && value.length === 0)
-
-export const isBlankString = (v: NullableString): boolean => v === undefined || v === null || v.trim().length === 0
-
 export const isNonArrayObject = (value: any): boolean =>
   hasValue(value) && typeof value === 'object' && !Array.isArray(value)
-
-export const isNotEmptyString = <T>(value: NullableType<T>): value is T => !isEmptyString(value)
 
 export const isEmpty = <T>(value: NullableType<T>): value is null | undefined => value === null || value === undefined
 
 export const hasValue = <T>(value: NullableType<T>): value is T => !isEmpty(value)
+
+export const isEmptyString = <T>(value: NullableType<T>): boolean =>
+  value === null || value === undefined || (typeof value === 'string' && value.length === 0)
+
+export const isNotEmptyString = <T>(value: NullableType<T>): boolean => !isEmptyString(value)
+
+export const isBlankString = (v: NullableString): boolean => v === undefined || v === null || v.trim().length === 0
 
 const nonEmptyPredicate: (emptyStrAsNone: boolean) => Predicate<any> = (emptyStrAsNone) =>
   emptyStrAsNone ? isNotEmptyString : hasValue
