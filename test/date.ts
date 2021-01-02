@@ -1,6 +1,6 @@
+import moment from 'moment'
 import * as assert from 'assert'
 import * as D from '../src/date'
-import moment from 'moment'
 
 describe('date-utils', () => {
   it('isSameDay', () => {
@@ -58,12 +58,5 @@ describe('date-utils', () => {
     assert.strictEqual(D.isSameOrBeforeDay(nextDayStart, new Date()), false)
     assert.strictEqual(D.isSameOrBeforeDay(prevDayEnd, nextDayStart), true)
     assert.strictEqual(D.isSameOrBeforeDay(nextDayStart, prevDayEnd), false)
-  })
-  it('formatDateValue', () => {
-    const dt = moment('2020-08-25T00:57:07+03:00').toDate()
-    const format = D.formatDateValue('MM-DD-YYYY HH:mm:ss')
-    assert.strictEqual(D.formatDateValue('')(dt), '2020-08-25T00:57:07+03:00')
-    assert.strictEqual(format(dt), '08-25-2020 00:57:07')
-    assert.strictEqual(format(undefined), '-')
   })
 })
