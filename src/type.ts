@@ -56,3 +56,5 @@ export const nameOf = <T>(name: keyof T): keyof T => name
 
 export const arrayIntRange = (start: number, end: number): ReadonlyArray<number> =>
   Array.from({ length: end - start + 1 }, (_, k) => k + start)
+
+export const mapValue = <A, B>(f: (a: A) => B) => f

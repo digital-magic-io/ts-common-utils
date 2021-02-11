@@ -1,5 +1,14 @@
 import * as assert from 'assert'
-import { getOrElse, mapNotNullable, mapNotNullablePair } from '../src/nullable-utils'
+import {
+  getOrElse,
+  mapNotNullable,
+  mapNotNullablePair,
+  parseIntNanSafe,
+  parseOptionalInt,
+  parseOptionalIntNanSafe,
+  undefinedIf
+} from '../src/nullable-utils'
+import { isEmptyString } from '../src/type'
 
 describe('utils', () => {
   it('getOrElse', () => {
@@ -36,5 +45,24 @@ describe('utils', () => {
     assert.strictEqual(mapper('one', undefined), undefined)
     assert.strictEqual(mapper(undefined, 1), undefined)
     assert.strictEqual(mapper(undefined, undefined), undefined)
+  })
+  it('undefinedIf', () => {
+    const filter = undefinedIf(isEmptyString)
+    assert.strictEqual(filter('test'), 'test')
+    assert.strictEqual(filter(''), undefined)
+  })
+  it('parseIntNanSafe', () => {
+    assert.strictEqual(parseIntNanSafe('1'), 1)
+    assert.strictEqual(parseIntNanSafe('a'), undefined)
+  })
+  it('parseOptionalInt', () => {
+    assert.strictEqual(parseOptionalInt('1'), 1)
+    assert.strictEqual(mapNotNullable(isNaN)(parseOptionalInt('a')), true)
+    assert.strictEqual(parseOptionalInt(undefined), undefined)
+  })
+  it('parseOptionalIntNanSafe', () => {
+    assert.strictEqual(parseOptionalIntNanSafe('1'), 1)
+    assert.strictEqual(parseOptionalIntNanSafe('a'), undefined)
+    assert.strictEqual(parseOptionalIntNanSafe(undefined), undefined)
   })
 })

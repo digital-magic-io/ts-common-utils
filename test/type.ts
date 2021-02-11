@@ -134,4 +134,8 @@ describe('type', () => {
     assert.deepStrictEqual(TU.arrayIntRange(-1, 1), [-1, 0, 1])
     assert.deepStrictEqual(TU.arrayIntRange(1, -1), [])
   })
+  it('mapValue', () => {
+    const mapper = TU.mapValue<number, string>(String)
+    assert.deepStrictEqual(mapper(1), '1')
+  })
 })
