@@ -24,7 +24,7 @@ export const toNullUnionType = <T>(value: NullableType<T>): NullUnionType<T> => 
 
 export const toOptionalType = <T>(value: NullableType<T>): OptionalType<T> => (value === null ? undefined : value)
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/explicit-module-boundary-types
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const isNonArrayObject = (value: any): boolean =>
   hasValue(value) && typeof value === 'object' && !Array.isArray(value)
 
@@ -65,5 +65,5 @@ export const nameOf = <T>(name: keyof T): keyof T => name
 export const arrayIntRange = (start: number, end: number): ReadonlyArray<number> =>
   Array.from({ length: end - start + 1 }, (_, k) => k + start)
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/explicit-function-return-type
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const mapValue = <A, B>(f: (a: A) => B) => f
