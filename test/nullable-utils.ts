@@ -1,6 +1,5 @@
 import * as assert from 'assert'
 import {
-  getOrElse,
   mapNotNullable,
   mapNotNullablePair,
   parseIntNanSafe,
@@ -11,6 +10,7 @@ import {
 import { isEmptyString } from '../src/type'
 
 describe('utils', () => {
+  /*
   it('getOrElse', () => {
     assert.strictEqual(
       getOrElse(null, () => 'test'),
@@ -25,6 +25,7 @@ describe('utils', () => {
       'value'
     )
   })
+  */
   it('mapNotNullable', () => {
     const mapFn = (v: string): number => v.length
     const mapper = mapNotNullable(mapFn)

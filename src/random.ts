@@ -1,18 +1,23 @@
-import { isEmptyString } from './type'
+import { isEmptyString, OptionalString } from './type'
 
 // TODO: Refactor it in more functional approach
-export function generateStringFromValues(length: number, possibleValues: string): string | undefined {
+/**
+ * @param length number of characters in generted string
+ * @param possibleValues string of values to generate from
+ * @return generated string or undefined if length < 0 or possibleValues is empty
+ */
+export function generateStringFromValues(length: number, possibleValues: string): OptionalString {
   if (length <= 0) {
     return undefined
-    // throw Error('length must be positive number!')
   }
   if (isEmptyString(possibleValues)) {
     return undefined
-    // throw Error('possibleValues must be provided!')
   }
 
+  // eslint-disable-next-line functional/no-let
   let text = ''
 
+  // eslint-disable-next-line functional/no-loop-statement,functional/no-let
   for (let i = 0; i < length; i++) {
     text += possibleValues.charAt(Math.floor(Math.random() * possibleValues.length))
   }
@@ -20,13 +25,19 @@ export function generateStringFromValues(length: number, possibleValues: string)
   return text
 }
 
-export const generateString = (length: number): string =>
-  generateStringFromValues(length, 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789')!
+/**
+ * @param length number of characters in generted string
+ * @return generated string or undefined if length < 0
+ */
+export const generateString = (length: number): OptionalString =>
+  generateStringFromValues(length, 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789')
 
 export function generateElementId(): string {
   const numbersLength = 17
   const lettersLength = 2
+  // eslint-disable-next-line
   const randLetters = generateStringFromValues(lettersLength, 'abcdefghijklmnopqrstuvwxyz')!
+  // eslint-disable-next-line
   const randNumbers = generateStringFromValues(numbersLength, '0123456789')!
   return `${randLetters}_${randNumbers}`
 }

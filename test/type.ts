@@ -80,7 +80,7 @@ describe('type', () => {
     assert.strictEqual(anyFieldIsFilledEmptyStrTrue({ test: 'value1', test2: '' }), true)
   })
   it('anyFieldIsFilledWithException', () => {
-    const alwaysFalse = <T>(_: T) => false
+    const alwaysFalse = (): boolean => false
     const eqValue = (value: string) => (v: string) => v === value
     const anyFieldIsFilledWithExceptionEmptyStrFalse = TU.anyFieldIsFilledWithException(false)
     const anyFieldIsFilledWithExceptionEmptyStrTrue = TU.anyFieldIsFilledWithException(true)

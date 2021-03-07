@@ -1,7 +1,9 @@
 import { hasValue, isEmpty, mapValue, NullableType, OptionalType, Predicate, toOptionalType } from './type'
 
+/*
 export const getOrElse = <T>(value: NullableType<T>, defaultValue: () => T): T =>
   hasValue(value) ? value : defaultValue()
+*/
 
 export const undefinedIf = <T>(predicate: Predicate<T>) => (value: T): OptionalType<T> =>
   mapValue<T, OptionalType<T>>((v) => (predicate(v) ? undefined : v))(value)
@@ -15,6 +17,7 @@ export const mapNotNullablePair = <A, B, C>(f: (a: A, b: B) => NullableType<C>) 
   b: NullableType<B>
 ): NullableType<C> => (isEmpty(a) || isEmpty(b) ? undefined : f(a, b))
 
+// tslint:disable-next-line:radix
 export const parseIntNanSafe = (value: string): OptionalType<number> => undefinedIf(isNaN)(parseInt(value))
 
 export const parseOptionalInt = (value: OptionalType<string>): OptionalType<number> =>
