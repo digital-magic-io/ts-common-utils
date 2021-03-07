@@ -16,7 +16,7 @@
     "prebuild": "npm run clean && npm run prettier",
     "postbuild": "pretty-quick --pattern \"lib/**/*.*(js|ts|jsx|tsx)\"",
     "precommit": "pretty-quick --staged",
-    "prepare": "tsc -p .",
+    "prepare": "husky install && tsc -p .",
     "build": "tsc -p ./tsconfig.build.json"
   },
   "repository": {
