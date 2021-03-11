@@ -12,7 +12,7 @@ describe('random', () => {
   it('generateString', () => {
     assert.strictEqual(R.generateString(2)?.length, 2)
     assert.strictEqual(R.generateString(4)?.length, 4)
-    assert.strictEqual(R.generateString(0)?.length, 0)
+    assert.strictEqual(R.generateString(0)?.length, undefined)
     assert.strictEqual(R.generateString(-1), undefined)
   })
   it('generateElementId', () => {
