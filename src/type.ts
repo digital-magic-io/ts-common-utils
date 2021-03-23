@@ -6,6 +6,22 @@ export type Lazy<T> = () => T
 export type CurriedLazy<A, B> = (value: A) => Lazy<B>
 export type CurriedHandler<A, B> = (value: A) => Handler<B>
 
+export type EitherProps<T, A extends keyof T, B extends keyof T> = T &
+  (
+    | ({
+        readonly [K in A]-?: NonNullable<T[K]>
+      } &
+        {
+          readonly [K in B]+?: never
+        })
+    | ({
+        readonly [K in B]-?: NonNullable<T[K]>
+      } &
+        {
+          readonly [K in A]+?: never
+        })
+  )
+
 export type Callable<R> = {
   (...args: ReadonlyArray<unknown>): R
 }
