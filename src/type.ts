@@ -1,7 +1,7 @@
 export type FN<T, R> = (value: T) => R
 export type Predicate<T> = FN<T, boolean>
-export type Lazy<T> = FN<never, T>
 export type Handler<T> = FN<T, void>
+export type Lazy<T> = () => T
 
 export type CurriedLazy<A, B> = (value: A) => Lazy<B>
 export type CurriedHandler<A, B> = (value: A) => Handler<B>
