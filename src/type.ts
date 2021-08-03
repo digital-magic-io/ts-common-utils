@@ -55,22 +55,25 @@ export const isBlankString = (v: NullableString): boolean => v === undefined || 
 const nonEmptyPredicate: (emptyStrAsNone: boolean) => Predicate<any> = (emptyStrAsNone) =>
   emptyStrAsNone ? isNotEmptyString : hasValue
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export const allFieldsAreFilled = (emptyStrAsNone: boolean) => (object: object): boolean =>
-  Object.keys(object).length === 0 ? false : Object.values(object).every(nonEmptyPredicate(emptyStrAsNone))
+export const allFieldsAreFilled =
+  (emptyStrAsNone: boolean) =>
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  (object: object): boolean =>
+    Object.keys(object).length === 0 ? false : Object.values(object).every(nonEmptyPredicate(emptyStrAsNone))
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export const anyFieldIsFilled = (emptyStrAsNone: boolean) => (object: object): boolean => {
-  return Object.values(object).some(nonEmptyPredicate(emptyStrAsNone))
-}
+export const anyFieldIsFilled =
+  (emptyStrAsNone: boolean) =>
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  (object: object): boolean => {
+    return Object.values(object).some(nonEmptyPredicate(emptyStrAsNone))
+  }
 
-export const anyFieldIsFilledWithException = (emptyStrAsNone: boolean) => <T>(
-  object: T,
-  exceptionPredicate: Predicate<keyof T>
-): boolean =>
-  Object.entries(object).some(
-    ([fieldName, item]) => !exceptionPredicate(fieldName as keyof T) && nonEmptyPredicate(emptyStrAsNone)(item)
-  )
+export const anyFieldIsFilledWithException =
+  (emptyStrAsNone: boolean) =>
+  <T>(object: T, exceptionPredicate: Predicate<keyof T>): boolean =>
+    Object.entries(object).some(
+      ([fieldName, item]) => !exceptionPredicate(fieldName as keyof T) && nonEmptyPredicate(emptyStrAsNone)(item)
+    )
 
 export const nameOf = <T>(name: keyof T): keyof T => name
 
