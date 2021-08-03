@@ -1,4 +1,10 @@
-export type Predicate<T> = (value: T) => boolean
+export type FN<T, R> = (value: T) => R
+export type Predicate<T> = FN<T, boolean>
+export type Lazy<T> = FN<never, T>
+export type Handler<T> = FN<T, void>
+
+export type CurriedLazy<A, B> = (value: A) => Lazy<B>
+export type CurriedHandler<A, B> = (value: A) => Handler<B>
 
 export type Callable<R> = {
   (...args: ReadonlyArray<unknown>): R
@@ -18,6 +24,9 @@ export type NullableType<T = NonNullable<any>> = T | null | undefined
 export type OptionalType<T = NonNullable<any>> = T | undefined
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type NullUnionType<T = NonNullable<any>> = T | null
+
+export type NonOptional<T> = T extends undefined ? never : T
+export type NonNull<T> = T extends null ? never : T
 
 export type NullableString = NullableType<string>
 export type OptionalString = OptionalType<string>
