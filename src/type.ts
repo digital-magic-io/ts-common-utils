@@ -28,6 +28,8 @@ export type Callable<R> = {
 
 export type GenericReturnType<R, X> = X extends Callable<R> ? R : never
 
+export type RecursiveReadonly<T> = T extends object ? { readonly [K in keyof T]: RecursiveReadonly<T[K]> } : T
+
 // eslint-disable-next-line @typescript-eslint/ban-types,functional/prefer-readonly-type
 export type RecursivePartial<T> = T extends object ? { [K in keyof T]?: RecursivePartial<T[K]> } : T
 

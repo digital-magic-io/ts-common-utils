@@ -5,6 +5,7 @@ const config: Config.InitialOptions = {
   testEnvironment: 'node',
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.ts'],
+  coveragePathIgnorePatterns: ['src/index.ts'],
   testRegex: 'test',
   moduleFileExtensions: ['ts', 'js'],
   coverageThreshold: {

@@ -1,9 +1,13 @@
-import { hasValue, isEmpty, mapValue, NullableType, OptionalType, Predicate, toOptionalType } from './type'
-
-/*
-export const getOrElse = <T>(value: NullableType<T>, defaultValue: () => T): T =>
-  hasValue(value) ? value : defaultValue()
-*/
+import {
+  hasValue,
+  isEmpty,
+  mapValue,
+  NullableType,
+  OptionalString,
+  OptionalType,
+  Predicate,
+  toOptionalType
+} from './type'
 
 export const undefinedIf =
   <T>(predicate: Predicate<T>) =>
@@ -27,3 +31,5 @@ export const parseOptionalInt = (value: OptionalType<string>): OptionalType<numb
 
 export const parseOptionalIntNanSafe = (value: OptionalType<string>): OptionalType<number> =>
   toOptionalType(mapNotNullable(parseIntNanSafe)(value))
+
+export const asNonEmptyString = undefinedIf<OptionalString>((v) => v === undefined || v.length === 0)
