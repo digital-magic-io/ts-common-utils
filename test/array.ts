@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { hasDuplicates } from '../src/array'
+import { hasDuplicates, isNonArrayObject } from '../src/array'
 
 describe('utils', () => {
   it('hasDuplicates', () => {
@@ -13,5 +13,12 @@ describe('utils', () => {
     assert.strictEqual(hasDuplicates([1, 1, '3']), true)
     assert.strictEqual(hasDuplicates([1, 1, '1']), true)
     assert.strictEqual(hasDuplicates([1, 1, 1]), true)
+  })
+  it('isNonArrayObject', () => {
+    assert.strictEqual(isNonArrayObject(''), false)
+    assert.strictEqual(isNonArrayObject(1), false)
+    assert.strictEqual(isNonArrayObject([]), false)
+    assert.strictEqual(isNonArrayObject([1]), false)
+    assert.strictEqual(isNonArrayObject({}), true)
   })
 })

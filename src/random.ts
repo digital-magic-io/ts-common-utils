@@ -1,4 +1,5 @@
-import { isEmptyString, OptionalString } from './type'
+import { OptionalString } from './type'
+import { isEmptyString } from './nullable-utils'
 
 // TODO: Refactor it in more functional approach
 /**
@@ -17,7 +18,7 @@ export function generateStringFromValues(length: number, possibleValues: string)
   // eslint-disable-next-line functional/no-let
   let text = ''
 
-  // eslint-disable-next-line functional/no-loop-statement,functional/no-let
+  // eslint-disable-next-line functional/no-let,functional/no-loop-statements
   for (let i = 0; i < length; i++) {
     text += possibleValues.charAt(Math.floor(Math.random() * possibleValues.length))
   }
@@ -26,7 +27,7 @@ export function generateStringFromValues(length: number, possibleValues: string)
 }
 
 /**
- * @param length number of characters in generted string
+ * @param length number of characters in generated string
  * @return generated string or undefined if length < 0
  */
 export const generateString = (length: number): OptionalString =>
