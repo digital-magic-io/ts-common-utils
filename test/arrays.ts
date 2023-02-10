@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { hasDuplicates, isNonArrayObject } from '../src/array'
+import { hasDuplicates, isNonArrayObject } from '../src'
 
 describe('utils', () => {
   it('hasDuplicates', () => {

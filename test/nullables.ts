@@ -9,7 +9,7 @@ import {
   parseOptionalIntNanSafe,
   undefinedIf
 } from '../src'
-import * as TU from '../src/nullable-utils'
+import * as TU from '../src/nullables'
 
 describe('utils', () => {
   it('toNullUnionType', () => {

@@ -1,6 +1,7 @@
+// TODO: Change to date-fns
 import moment from 'moment'
 import * as assert from 'assert'
-import * as D from '../src/date'
+import * as D from '../src/dates'
 
 describe('date-utils', () => {
   it('isSameDay', () => {

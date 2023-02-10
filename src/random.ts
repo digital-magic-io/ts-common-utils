@@ -1,5 +1,5 @@
 import { OptionalString } from './type'
-import { isEmptyString } from './nullable-utils'
+import { isEmptyString } from './nullables'
 
 // TODO: Refactor it in more functional approach
 /**
