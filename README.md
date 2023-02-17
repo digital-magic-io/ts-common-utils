@@ -1,2 +1,2 @@
 # ts-common-utils
-Common utilities used in our Type Script projects
+Common utilities used in our TypeScript projects

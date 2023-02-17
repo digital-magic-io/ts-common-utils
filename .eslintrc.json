@@ -29,6 +29,7 @@
     "prettier/prettier": "error",
     "no-console": "error",
     "no-eval": "error",
+    "no-unused-vars": "off",
     "@typescript-eslint/array-type": [
       "error",
       {
@@ -52,7 +53,6 @@
     "@typescript-eslint/quotes": ["error", "single"],
     "@typescript-eslint/semi": ["error", "never"],
     "@typescript-eslint/space-infix-ops": "error",
-    "functional/no-mixed-type": "off",
-    "functional/no-return-void": "off"
+    "functional/no-return-void": "warn"
   }
 }

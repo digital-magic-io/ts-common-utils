@@ -10,9 +10,8 @@ export const sameArrayValues = <T>(values: Array<T>): boolean => new Set(values)
 export const isNonArrayObject = (value: any): boolean =>
   hasValue(value) && typeof value === 'object' && !Array.isArray(value)
 
-export const arrayIncludes = <T extends U, U>(array: ReadonlyArray<T>, element: U): element is T => {
-  return array.includes(element as T)
-}
+export const arrayIncludes = <T extends U, U>(array: ReadonlyArray<T>, element: U): element is T =>
+  array.includes(element as T)
 
 // eslint-disable-next-line functional/prefer-immutable-types
 export const splitArrayToChunks = <T>(list: Array<T>, chunkSize: number): ReadonlyArray<ReadonlyArray<T>> =>

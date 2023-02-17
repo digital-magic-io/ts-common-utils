@@ -2,6 +2,7 @@ export type FN<T, R> = (value: T) => R
 export type Predicate<T> = FN<T, boolean>
 export type Handler<T> = FN<T, void>
 export type Lazy<T> = () => T
+export type MaybeLazy<T> = Lazy<T> | T
 
 export type ReadonlyRecord<K extends keyof unknown, V> = Readonly<Record<K, V>>
 

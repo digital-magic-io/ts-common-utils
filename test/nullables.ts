@@ -1,8 +1,9 @@
+/* eslint-disable functional/no-return-void */
 import * as assert from 'assert'
 import {
   asNonEmptyString,
   isEmptyString,
-  mapNotNullable,
+  map,
   mapNotNullablePair,
   parseIntNanSafe,
   parseOptionalInt,
@@ -123,9 +124,9 @@ describe('utils', () => {
     assert.strictEqual(anyFieldIsFilledWithExceptionEmptyStrFalse({ test: 'value1', test2: '' }, eqValue('test')), true)
     assert.strictEqual(anyFieldIsFilledWithExceptionEmptyStrTrue({ test: 'value1', test2: '' }, eqValue('test')), false)
   })
-  it('mapNotNullable', () => {
+  it('map', () => {
     const mapFn = (v: string): number => v.length
-    const mapper = mapNotNullable(mapFn)
+    const mapper = map(mapFn)
     assert.strictEqual(mapper('one'), 3)
     assert.strictEqual(mapper('four'), 4)
     assert.strictEqual(mapper(''), 0)
@@ -155,7 +156,7 @@ describe('utils', () => {
   })
   it('parseOptionalInt', () => {
     assert.strictEqual(parseOptionalInt('1'), 1)
-    assert.strictEqual(mapNotNullable(isNaN)(parseOptionalInt('a')), true)
+    assert.strictEqual(map(isNaN)(parseOptionalInt('a')), true)
     assert.strictEqual(parseOptionalInt(undefined), undefined)
   })
   it('parseOptionalIntNanSafe', () => {

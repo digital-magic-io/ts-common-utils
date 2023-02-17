@@ -1,3 +1,4 @@
+/* eslint-disable functional/no-return-void */
 // TODO: Change to date-fns
 import moment from 'moment'
 import * as assert from 'assert'

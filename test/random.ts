@@ -1,3 +1,4 @@
+/* eslint-disable functional/no-return-void */
 import * as assert from 'assert'
 import * as R from '../src/random'
 

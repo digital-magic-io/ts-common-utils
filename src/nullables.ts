@@ -19,15 +19,18 @@ export const isBlankString = (v: NullableString): boolean => v === undefined || 
 const nonEmptyPredicate: (emptyStrAsNone: boolean) => Predicate<any> = (emptyStrAsNone) =>
   emptyStrAsNone ? isNotEmptyString : hasValue
 
-const mapValue = <A, B>(f: (a: A) => B): ((a: A) => B) => f
-
-export const undefinedIf =
+export const undefinedIf: <T>(predicate: Predicate<T>) => (value: T) => OptionalType<T> =
   <T>(predicate: Predicate<T>) =>
-  (value: T): OptionalType<T> =>
-    mapValue<T, OptionalType<T>>((v) => (predicate(v) ? undefined : v))(value)
+  (v: T) =>
+    predicate(v) ? undefined : v
 
-export const mapNotNullable: <A, B>(f: (a: A) => B) => (v: NullableType<A>) => NullableType<B> = (f) => (v) =>
+export const map: <A, B>(f: (a: A) => B) => (v: NullableType<A>) => NullableType<B> = (f) => (v) =>
   hasValue(v) ? f(v) : undefined
+
+/*
+ * @deprecated Use `map` instead
+ */
+export const mapNotNullable1 = map
 
 // TODO: Find better algebra
 export const mapNotNullablePair =
@@ -39,10 +42,10 @@ export const mapNotNullablePair =
 export const parseIntNanSafe = (value: string): OptionalType<number> => undefinedIf(isNaN)(parseInt(value))
 
 export const parseOptionalInt = (value: OptionalType<string>): OptionalType<number> =>
-  toOptionalType(mapNotNullable(parseInt)(value))
+  toOptionalType(map(parseInt)(value))
 
 export const parseOptionalIntNanSafe = (value: OptionalType<string>): OptionalType<number> =>
-  toOptionalType(mapNotNullable(parseIntNanSafe)(value))
+  toOptionalType(map(parseIntNanSafe)(value))
 
 export const asNonEmptyString = undefinedIf<OptionalString>((v) => v === undefined || v.length === 0)
 
